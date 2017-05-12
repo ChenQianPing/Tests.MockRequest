@@ -22,9 +22,14 @@ namespace Tests.MockRequest
 
             try
             {
+                if (!System.IO.Directory.Exists(@"E:\10001003"))
+                {
+                    System.IO.Directory.CreateDirectory(@"E:\10001003");
+                }
+
                 using (var webclient = new WebClient())
                 {
-                    webclient.DownloadFile(url, $@"E:\10001003\temp\{Guid.NewGuid():N}.jpg");
+                    webclient.DownloadFile(url, $@"E:\10001003\{Guid.NewGuid():N}.jpg");
                     return TaskId;
                 }
             }
@@ -32,6 +37,13 @@ namespace Tests.MockRequest
             {
                 return -1;
             }
+        }
+
+        public async Task<int> ReceiveDataAsync()
+        {
+            var task = new Task<int>(ReceiveData);
+            task.Start();
+            return await task;
         }
     }
 }

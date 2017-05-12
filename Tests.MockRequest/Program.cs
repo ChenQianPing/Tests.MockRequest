@@ -12,7 +12,7 @@ namespace Tests.MockRequest
     {
         static void Main(string[] args)
         {
-            const int maxThread = 100;
+            const int maxThread = 20;
             BeginTest(maxThread);
         }
 
@@ -45,7 +45,7 @@ namespace Tests.MockRequest
                     }
                 }
                 if (t != null)
-                    Console.WriteLine($"线程ID：{t.TaskId}第{count}次接收成功！耗时：{Convert.ToInt16(stopwatch.Elapsed.TotalMilliseconds)}毫秒!");
+                    Console.WriteLine($"线程ID：{t.TaskId}第{count}次接收成功！耗时：{stopwatch.Elapsed.TotalMilliseconds}毫秒!");
                 Thread.Sleep(500);
             }
         }
